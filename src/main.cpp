@@ -48,8 +48,8 @@ int channelIDLength;
 int writeAPILength;
 char ssid[20];
 char password[20];
-char channelID[20]; // = "864288";
-char channelAPIkey[20]; // = "37SAHQPEQ7FOBC20";
+char channelID[20]; // = "123456";
+char channelAPIkey[20]; // = "123456";
 char server[] = "api.thingspeak.com";
 int attempts; // number of connection attempts when device starts up in monitoring mode
 WiFiClient client;
@@ -385,7 +385,7 @@ void setup()
     tft.setTextColor(ILI9341_WHITE);
 
     tft.setCursor(38, 140);
-    tft.println("Connecting to WiFi..");
+    tft.println("Verbinde mit WiFi..");
 
     while ((WiFi.status() != WL_CONNECTED) && (attempts < 300))
     {
@@ -396,13 +396,13 @@ void setup()
     {
       deviceMode = 0;
       tft.setCursor(45, 200);
-      tft.println("Failed to connect.");
+      tft.println("WiFi nicht verbunden.");
       delay(1000);
     }
     else
     {
       tft.setCursor(68, 200);
-      tft.println("Connected!");
+      tft.println("WiFi verbunden!");
       delay(1000);
     }
     drawHomePage();
@@ -568,7 +568,7 @@ void loop()
           tft.setFont(&FreeSans9pt7b);
           tft.setTextColor(ILI9341_WHITE);
           tft.setTextSize(1);
-          tft.println("NORMAL BACKGROUND");
+          tft.println("HINTERGRUNDSTRAHLUNG");
 
           previousDoseLevel = doseLevel;
         }
@@ -580,7 +580,7 @@ void loop()
           tft.setFont(&FreeSans9pt7b);
           tft.setTextColor(ILI9341_WHITE);
           tft.setTextSize(1);
-          tft.println("ELEVATED ACTIVITY");
+          tft.println("MITTLERE AKTIVITÄT");
 
           previousDoseLevel = doseLevel;
         }
@@ -592,7 +592,7 @@ void loop()
           tft.setFont(&FreeSans9pt7b);
           tft.setTextColor(ILI9341_WHITE);
           tft.setTextSize(1);
-          tft.println("HIGH RADIATION LEVEL");
+          tft.println("HOHE AKTIVITÄT");
 
           previousDoseLevel = doseLevel;
         }
@@ -841,22 +841,22 @@ void loop()
         doseUnits = 0;
         tft.fillRoundRect(4, 71, 232, 48, 4, 0x2A86);
         tft.setCursor(30, 103);
-        tft.println("Sieverts (uSv/hr)");
+        tft.println("Sieverts (uSv/h)");
 
         tft.fillRoundRect(4, 128, 232, 48, 4, ILI9341_BLACK);
         tft.setCursor(47, 160);
-        tft.println("Rems (mR/hr)");
+        tft.println("Rems (mR/h)");
       }
       else if ((x > 4 && x < 234) && (y > 127 && y < 177))
       {
         doseUnits = 1;
         tft.fillRoundRect(4, 71, 232, 48, 4, ILI9341_BLACK);
         tft.setCursor(30, 103);
-        tft.println("Sieverts (uSv/hr)");
+        tft.println("Sieverts (uSv/h)");
 
         tft.fillRoundRect(4, 128, 232, 48, 4, 0x2A86);
         tft.setCursor(47, 160);
-        tft.println("Rems (mR/hr)");
+        tft.println("Rems (mR/h)");
       }
     }
   }
@@ -974,7 +974,7 @@ void loop()
         tft.drawRoundRect(10, 30, 220, 260, 6, ILI9341_WHITE);
 
         tft.setCursor(50, 50);
-        tft.println("AP SETUP MODE");
+        tft.println("WIFI SETUP");
         tft.drawFastHLine(50, 53, 145, ILI9341_WHITE);
         tft.setCursor(20, 80);
         tft.println("With any WiFi capable");
@@ -1158,14 +1158,14 @@ void loop()
           tft.fillRoundRect(3, 114, 234, 44, 4, 0x3B8F);
           tft.drawRoundRect(3, 114, 234, 44, 4, WHITE);
           tft.setCursor(38, 145);
-          tft.println("LOGGING ON");
+          tft.println("LOGGING AN");
         }
         else
         {
           tft.fillRoundRect(3, 114, 234, 44, 4, 0xB9C7);
           tft.drawRoundRect(3, 114, 234, 44, 4, WHITE);
           tft.setCursor(33, 145);
-          tft.println("LOGGING OFF");
+          tft.println("LOGGING AUS");
         }
       }
       else if ((x > 3 && x < 237) && (y > 214 && y < 258))  // device mode
@@ -1351,11 +1351,11 @@ void loop()
         tft.setFont(&FreeSans12pt7b);
         tft.fillRoundRect(4, 71, 232, 48, 4, 0x2A86);
         tft.setCursor(13, 103);
-        tft.println("GEIGER COUNTER");
+        tft.println("GEIGER ZÄHLER");
 
         tft.fillRoundRect(4, 128, 232, 48, 4, ILI9341_BLACK);
         tft.setCursor(30, 160);
-        tft.println("MON. STATION");
+        tft.println("BEOB. STATION");
 
       }
       else if ((x > 4 && x < 234) && (y > 127 && y < 177))
@@ -1364,11 +1364,11 @@ void loop()
         tft.setFont(&FreeSans12pt7b);
         tft.fillRoundRect(4, 71, 232, 48, 4, ILI9341_BLACK);
         tft.setCursor(13, 103);
-        tft.println("GEIGER COUNTER");
+        tft.println("GEIGER ZÄHLER");
 
         tft.fillRoundRect(4, 128, 232, 48, 4, 0x2A86);
         tft.setCursor(30, 160);
-        tft.println("MON. STATION");
+        tft.println("BEOB. STATION");
 
       }
     }
@@ -1408,16 +1408,16 @@ void drawHomePage()
   tft.drawLine(1, 20, 238, 20, ILI9341_WHITE);
   tft.fillRoundRect(3, 23, 234, 69, 3, DOSEBACKGROUND);
   tft.setCursor(16, 40);
-  tft.println("EFFECTIVE DOSE RATE:");
+  tft.println("EFFEKTIVE DOSIS:");
   tft.setCursor(165, 85);
   tft.setFont(&FreeSans12pt7b);
   if (doseUnits == 0)
   {
-    tft.println("uSv/hr");
+    tft.println("uSv/h");
   }
   else if (doseUnits == 1)
   {
-    tft.println("mR/hr");
+    tft.println("mR/h");
   }
 
   tft.fillRoundRect(3, 94, 234, 21, 3, 0x2DC6);
@@ -1425,7 +1425,7 @@ void drawHomePage()
   tft.setFont(&FreeSans9pt7b);
   tft.setTextColor(ILI9341_WHITE);
   tft.setTextSize(1);
-  tft.println("NORMAL BACKGROUND");
+  tft.println("HINTERGRUNDSTRAHLUNG");
 
   tft.setFont(&FreeSans12pt7b);
   tft.setCursor(7, 141);
@@ -1435,7 +1435,7 @@ void drawHomePage()
   tft.fillRoundRect(3, 151, 185, 105, 4, 0x630C);
   tft.setFont(&FreeSans9pt7b);
   tft.setCursor(9, 171);
-  tft.println("CUMULATIVE DOSE");
+  tft.println("INTEGRALE DOSIS");
   tft.setCursor(7, 205);
   tft.println("Counts:");
   if (doseUnits == 0)
@@ -1456,9 +1456,9 @@ void drawHomePage()
   tft.setFont(&FreeSans12pt7b);
   tft.setTextSize(1);
   tft.setCursor(74, 284);
-  tft.println("TIMED");
+  tft.println("TIMER");
   tft.setCursor(70, 309);
-  tft.println("COUNT");
+  tft.println("COUNTER");
 
   if (integrationMode == 0)
   {
@@ -1536,28 +1536,28 @@ void drawSettingsPage()
   tft.fillRoundRect(3, 23, 234, 35, 3, 0x3B8F);
   tft.setFont(&FreeSans12pt7b);
   tft.setCursor(57, 48);
-  tft.println("SETTINGS");
+  tft.println("SETUP");
   tft.drawFastHLine(59, 51, 117, WHITE);
 
   tft.fillRoundRect(3, 64, 234, 44, 4, 0x2A86);
   tft.drawRoundRect(3, 64, 234, 44, 4, WHITE);
   tft.setCursor(44, 94);
-  tft.println("DOSE UNITS");
+  tft.println("DOSIS EINHEIT");
 
   tft.fillRoundRect(3, 114, 234, 44, 4, 0x2A86);
   tft.drawRoundRect(3, 114, 234, 44, 4, WHITE);
   tft.setCursor(5, 145);
-  tft.println("ALERT THRESHOLD");
+  tft.println("GRENZWERT ALARM");
 
   tft.fillRoundRect(3, 164, 234, 44, 4, 0x2A86);
   tft.drawRoundRect(3, 164, 234, 44, 4, WHITE);
   tft.setCursor(37, 194);
-  tft.println("CALIBRATION");
+  tft.println("KALIBRIERUNG");
 
   tft.fillRoundRect(3, 214, 234, 44, 4, 0x2A86);
   tft.drawRoundRect(3, 214, 234, 44, 4, WHITE);
   tft.setCursor(8, 244);
-  tft.println("LOGGING AND WIFI");
+  tft.println("LOGGING UND WIFI");
 
   drawBackButton();
 }
@@ -1569,7 +1569,7 @@ void drawUnitsPage()
   tft.fillRoundRect(3, 23, 234, 40, 3, 0x3B8F);
   tft.setFont(&FreeSans12pt7b);
   tft.setCursor(84, 51);
-  tft.println("UNITS");
+  tft.println("EINHEIT");
   tft.drawFastHLine(86, 55, 71, WHITE);
 
   drawBackButton();
@@ -1578,13 +1578,13 @@ void drawUnitsPage()
   if (doseUnits == 0)
     tft.fillRoundRect(4, 71, 232, 48, 4, 0x2A86);
   tft.setCursor(30, 103);
-  tft.println("Sieverts (uSv/hr)");
+  tft.println("Sieverts (uSv/h)");
 
   tft.drawRoundRect(3, 127, 234, 50, 4, WHITE);
   if (doseUnits == 1)
     tft.fillRoundRect(4, 128, 232, 48, 4, 0x2A86);
   tft.setCursor(47, 160);
-  tft.println("Rems (mR/hr)");
+  tft.println("Rems (mR/h)");
 }
 
 void drawAlertPage()
@@ -1594,13 +1594,13 @@ void drawAlertPage()
   tft.fillRoundRect(3, 23, 234, 40, 3, 0x3B8F);
   tft.setFont(&FreeSans12pt7b);
   tft.setCursor(4, 51);
-  tft.println("ALERT THRESHOLD");
+  tft.println("GRENZWERT ALARM");
   tft.drawFastHLine(5, 55, 229, WHITE);
 
   drawBackButton();
 
   tft.setCursor(30, 164);
-  tft.println("uSv/hr:");
+  tft.println("uSv/h:");
 
   tft.drawRoundRect(130, 70, 60, 60, 4, ILI9341_WHITE);
   tft.fillRoundRect(131, 71, 58, 58, 4, 0x2A86);
@@ -1622,16 +1622,16 @@ void drawCalibrationPage()
   tft.fillRoundRect(3, 23, 234, 40, 3, 0x3B8F);
   tft.setFont(&FreeSans12pt7b);
   tft.setCursor(47, 51);
-  tft.println("CALIBRATE");
+  tft.println("KALIBRIERUNG");
   tft.drawFastHLine(48, 55, 133, WHITE);
 
   drawBackButton();
 
   tft.setFont(&FreeSans9pt7b);
   tft.setCursor(8, 154);
-  tft.println("Conversion Factor");
+  tft.println("Konversions-Faktor");
   tft.setCursor(8, 174);
-  tft.println("(CPM per uSv/hr)");
+  tft.println("(CPM pro uSv/h)");
 
   tft.drawRoundRect(160, 70, 60, 60, 4, ILI9341_WHITE);
   tft.fillRoundRect(161, 71, 58, 58, 4, 0x2A86);
@@ -1656,7 +1656,7 @@ void drawWifiPage()
   tft.fillRoundRect(3, 23, 234, 35, 3, 0x3B8F);
   tft.setFont(&FreeSans12pt7b);
   tft.setCursor(7, 48);
-  tft.println("LOGGING AND WIFI");
+  tft.println("LOGGING UND WIFI");
   tft.drawFastHLine(8, 51, 222, WHITE);
 
   tft.fillRoundRect(3, 64, 234, 44, 4, 0x2A86);
@@ -1707,16 +1707,16 @@ void drawTimedCountPage()
   tft.drawRoundRect(145, 271, 92, 45, 3, ILI9341_WHITE);
   tft.setFont(&FreeSans12pt7b);
   tft.setCursor(149, 302);
-  tft.println("BEGIN!");
+  tft.println("START!");
 
   tft.fillRoundRect(3, 23, 234, 40, 3, 0x3B8F);
   tft.setCursor(34, 51);
-  tft.println("TIMED COUNT");
+  tft.println("TIMER COUNTER");
   tft.drawFastHLine(35, 55, 163, WHITE);
 
   tft.setFont(&FreeSans9pt7b);
   tft.setCursor(5, 162);
-  tft.println("Duration (minutes):");
+  tft.println("Dauer (minuten):");
 
   tft.drawRoundRect(160, 70, 60, 60, 4, ILI9341_WHITE);
   tft.fillRoundRect(161, 71, 58, 58, 4, 0x2A86);
@@ -1746,7 +1746,7 @@ void drawTimedCountRunningPage(int duration, int size)
   tft.setFont(&FreeSans12pt7b);
   tft.setTextSize(1);
   tft.setCursor(34, 51);
-  tft.println("TIMED COUNT");
+  tft.println("TIMER COUNTER");
   tft.drawFastHLine(35, 55, 163, WHITE);
 
   tft.drawRoundRect(3, 66, 234, 95, 4, ILI9341_WHITE);
@@ -1754,9 +1754,9 @@ void drawTimedCountRunningPage(int duration, int size)
   tft.drawRoundRect(3, 164, 234, 103, 4, ILI9341_WHITE);
 
   tft.setCursor(58, 90);
-  tft.println("Progress:");
+  tft.println("Fortschritt:");
   tft.setCursor(13, 150);
-  tft.println("Duration:");
+  tft.println("Dauer:");
   tft.setCursor(115, 150);
   tft.println(duration);
   tft.setCursor((135 + (size - 1)*15), 150);
@@ -1779,7 +1779,7 @@ void drawDeviceModePage()
   tft.fillRoundRect(3, 23, 234, 40, 3, 0x3B8F);
   tft.setFont(&FreeSans12pt7b);
   tft.setCursor(34, 51);
-  tft.println("DEVICE MODE");
+  tft.println("MODUS");
   tft.drawFastHLine(35, 57, 160, WHITE);
 
   drawBackButton();
@@ -1788,13 +1788,13 @@ void drawDeviceModePage()
   if (deviceMode == 0)
   tft.fillRoundRect(4, 71, 232, 48, 4, 0x2A86);
   tft.setCursor(13, 103);
-  tft.println("GEIGER COUNTER");
+  tft.println("GEIGER ZÄHLER");
 
   tft.drawRoundRect(3, 127, 234, 50, 4, WHITE);
   if (deviceMode == 1)
   tft.fillRoundRect(4, 128, 232, 48, 4, 0x2A86);
   tft.setCursor(30, 160);
-  tft.println("MON. STATION");
+  tft.println("BEOB. STATION");
 
   tft.setFont(&FreeSans9pt7b);
   tft.setCursor(20, 200);
@@ -1876,7 +1876,7 @@ void drawCancelButton()
   tft.drawRoundRect(70, 271, 100, 45, 3, ILI9341_WHITE);
   tft.setFont(&FreeSans12pt7b);
   tft.setCursor(72, 302);
-  tft.println("CANCEL");
+  tft.println("ABBRUCH");
 }
 
 void drawCloseButton()
@@ -1886,7 +1886,7 @@ void drawCloseButton()
   tft.setTextSize(1);
   tft.setFont(&FreeSans12pt7b);
   tft.setCursor(79, 302);
-  tft.println("CLOSE");
+  tft.println("SPEICHERN");
 }
 
 long EEPROMReadlong(long address) {
